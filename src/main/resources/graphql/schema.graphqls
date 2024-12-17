@@ -10,6 +10,7 @@ input UserInput{
 }
 
 type Query{
+    justThrow(name: String!): User
     getUserById(id: Int!): User
     getUserByName(name: String!): User
     getAllUsers: [User]

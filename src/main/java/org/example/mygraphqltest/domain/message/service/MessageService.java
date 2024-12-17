@@ -13,8 +13,10 @@ import reactor.core.publisher.Mono;
 public class MessageService {
     private final MessageRepository messageRepository;
     public Mono<String> getMessage(String locale, String code){
-        return messageRepository.findByLocaleAndCode(locale,code)
-                .map(Messages::getMessage)
-                .defaultIfEmpty("[" + code + "]");
+
+        System.out.println("locale : "+ locale + " code : " + code);
+
+        return (messageRepository.findByLocaleAndCode(locale,code)
+                .map(Messages::getMessage));
     }
 }

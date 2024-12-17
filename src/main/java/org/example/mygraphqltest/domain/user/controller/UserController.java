@@ -19,6 +19,10 @@ public class UserController {
     private final UserService userService;
 
     @QueryMapping
+    public Mono<Users> justThrow(@Argument String name){
+        throw new IllegalArgumentException();
+    }
+    @QueryMapping
     public Mono<Users> getUserByName(@Argument String name) {
         return userService.findUserByName(name);
     }

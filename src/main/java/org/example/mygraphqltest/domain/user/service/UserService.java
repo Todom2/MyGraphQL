@@ -2,10 +2,12 @@ package org.example.mygraphqltest.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.mygraphqltest.domain.message.service.MessageService;
 import org.example.mygraphqltest.domain.user.entity.Users;
 import org.example.mygraphqltest.domain.user.entity.UserInput;
 import org.example.mygraphqltest.domain.user.repository.UserRepository;
 import org.example.mygraphqltest.global.exception.BusinessException;
+import org.example.mygraphqltest.global.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,8 +17,11 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
+    private final MessageService messageService;
     public Mono<Users> findUserByName(String name) {
-        return userRepository.findUsersByName(name);
+
+        return userRepository.findUsersByName(name)
+                .switchIfEmpty(Mono.error(new UserNotFoundException("error.user.not_found")));
     }
     public Mono<Users> findUserById(Integer id) {
         return userRepository.findById(id);
