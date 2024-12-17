@@ -9,9 +9,6 @@ import org.example.mygraphqltest.domain.message.service.MessageService;
 import org.example.mygraphqltest.global.exception.CustomGraphQLException;
 import org.springframework.graphql.execution.DataFetcherExceptionResolver;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.Collections;

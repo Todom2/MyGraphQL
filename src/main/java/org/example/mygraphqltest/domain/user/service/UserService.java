@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
-    private final MessageService messageService;
     public Mono<Users> findUserByName(String name) {
 
         return userRepository.findUsersByName(name)
@@ -57,7 +56,6 @@ public class UserService {
     }
 
     public Mono<Users> updateUserByName(String name, UserInput input) {
-        log.debug("{}",userRepository.findUsersByName(name));
         return userRepository.findUsersByName(name)
                 .flatMap(existingUsers -> {
                     existingUsers.setName(input.getName());
