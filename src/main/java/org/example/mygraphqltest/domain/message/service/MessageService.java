@@ -16,6 +16,7 @@ public class MessageService {
 
         System.out.println("locale : "+ locale + " code : " + code);
 
+
         return (messageRepository.findByLocaleAndCode(locale,code)
                 .map(Messages::getMessage));
     }
