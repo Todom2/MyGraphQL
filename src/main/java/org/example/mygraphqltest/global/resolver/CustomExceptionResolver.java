@@ -33,8 +33,8 @@ public class CustomExceptionResolver implements DataFetcherExceptionResolver {
             // 커스텀 예외 처리
             if (ex instanceof CustomGraphQLException customException) {
                 return messageService.getMessage(locale.toString(), "error.user.not_found")
-                        .map(message4 -> GraphqlErrorBuilder.newError()
-                                .message(message4)
+                        .map(message -> GraphqlErrorBuilder.newError()
+                                .message(message)
                                 .errorType(customException.getErrorType())
                                 .extensions(customException.getExtensions())
                                 .location(env.getField().getSourceLocation())
